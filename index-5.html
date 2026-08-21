@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جواب دندان‌شکن</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #170b0c;
+    --bg-card: #241316;
+    --bg-card-2: #2e1a1d;
+    --rope-red: #c8102e;
+    --rope-cream: #f2e6d5;
+    --gold: #d4af37;
+    --gold-deep: #9c7a1e;
+    --text: #f5ece0;
+    --text-dim: #c9b8ae;
+    --glove: #8a1220;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at top, #2a1315 0%, var(--bg) 60%);
+    color:var(--text);
+    font-family:'Vazirmatn', sans-serif;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding-bottom:40px;
+  }
+  .rope{
+    width:100%;
+    height:14px;
+    background:repeating-linear-gradient(
+      -45deg,
+      var(--rope-red) 0px, var(--rope-red) 18px,
+      var(--rope-cream) 18px, var(--rope-cream) 36px
+    );
+    flex-shrink:0;
+  }
+  header{
+    text-align:center;
+    margin:38px 20px 18px;
+    max-width:620px;
+  }
+  .glove{
+    font-size:52px;
+    display:inline-block;
+    transform:rotate(-18deg);
+    transition:transform .25s cubic-bezier(.34,1.56,.64,1);
+  }
+  .glove.punch{
+    animation:punch .45s cubic-bezier(.34,1.56,.64,1);
+  }
+  @keyframes punch{
+    0%{transform:rotate(-18deg) translateX(0);}
+    40%{transform:rotate(6deg) translateX(30px) scale(1.15);}
+    100%{transform:rotate(-18deg) translateX(0);}
+  }
+  h1{
+    font-family:'Lalezar', sans-serif;
+    font-weight:400;
+    font-size:2.6rem;
+    letter-spacing:1px;
+    margin:6px 0 4px;
+    color:var(--gold);
+    text-shadow:0 2px 0 #000, 0 0 24px rgba(212,175,55,.25);
+  }
+  .sub{
+    color:var(--text-dim);
+    font-size:1rem;
+    line-height:1.9;
+  }
+  main{
+    width:100%;
+    max-width:560px;
+    padding:0 20px;
+  }
+  .ring{
+    background:var(--bg-card);
+    border:2px solid var(--gold-deep);
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 12px 30px rgba(0,0,0,.4), inset 0 0 0 6px #1a0d0e;
+  }
+  .ring label{
+    display:block;
+    font-size:.85rem;
+    color:var(--gold);
+    margin-bottom:8px;
+    font-family:'Lalezar', sans-serif;
+    letter-spacing:.5px;
+  }
+  textarea{
+    width:100%;
+    min-height:90px;
+    resize:vertical;
+    background:#120809;
+    border:1.5px solid #3a2226;
+    border-radius:10px;
+    color:var(--text);
+    font-family:'Vazirmatn', sans-serif;
+    font-size:1.02rem;
+    padding:14px;
+    outline:none;
+    transition:border-color .2s;
+  }
+  textarea:focus{border-color:var(--gold);}
+  textarea::placeholder{color:#6e5a56;}
+  button.hit{
+    margin-top:14px;
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(180deg, var(--rope-red), #8f0d20);
+    color:var(--rope-cream);
+    font-family:'Lalezar', sans-serif;
+    font-size:1.3rem;
+    letter-spacing:1px;
+    cursor:pointer;
+    box-shadow:0 6px 0 #5c0a14, 0 8px 16px rgba(0,0,0,.4);
+    transition:transform .08s;
+  }
+  button.hit:active{
+    transform:translateY(5px);
+    box-shadow:0 1px 0 #5c0a14, 0 2px 6px rgba(0,0,0,.4);
+  }
+  .hint{
+    text-align:center;
+    font-size:.8rem;
+    color:#7a6560;
+    margin-top:10px;
+  }
+  #results{
+    margin-top:26px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .round{
+    background:var(--bg-card-2);
+    border-radius:12px;
+    padding:16px 18px;
+    border-inline-start:4px solid var(--gold);
+    opacity:0;
+    transform:translateY(14px);
+    animation:rise .4s forwards;
+  }
+  .round .tag{
+    font-family:'Lalezar', sans-serif;
+    color:var(--gold);
+    font-size:.9rem;
+    letter-spacing:.5px;
+    margin-bottom:6px;
+    display:block;
+  }
+  .round p{
+    margin:0;
+    font-size:1.05rem;
+    line-height:1.85;
+  }
+  @keyframes rise{
+    to{opacity:1; transform:translateY(0);}
+  }
+  footer{
+    margin-top:auto;
+    padding-top:34px;
+    color:#5e4c48;
+    font-size:.78rem;
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+
+<div class="rope"></div>
+
+<header>
+  <span class="glove" id="glove">🥊</span>
+  <h1>جواب دندان‌شکن</h1>
+  <p class="sub">هر حرفی بزنی، یه مشت جواب حاضر و آماده تحویل می‌گیری.<br>حرفتو بنداز وسط رینگ، ما جوابشو می‌دیم.</p>
+</header>
+
+<main>
+  <div class="ring">
+    <label for="input">حرفت چیه؟</label>
+    <textarea id="input" placeholder="مثلاً: گمشو ، سلام ، دوستت دارم ، هرچی دلت خواست..."></textarea>
+    <button class="hit" id="hitBtn">بزن!</button>
+    <p class="hint">Enter هم کار می‌کنه، لازم نیست دکمه رو بزنی</p>
+  </div>
+
+  <div id="results"></div>
+</main>
+
+<footer>ساخته‌شده برای اونایی که همیشه یه جواب کم دارن</footer>
+
+<div class="rope"></div>
+
+<script>
+const bank = {
+  insult: [
+    "گمشدن بلد نیستم، ولی پیدا کردن یه جواب خوب برات که بلدم!",
+    "دستور دریافت شد. پردازش انجام شد. نتیجه: انگیزه‌ای برای اجرا پیدا نشد.",
+    "باشه می‌رم، ولی اول بگو جای خالیم رو کی پر می‌کنه؟",
+    "پیشنهاد جالبیه، ولی من طبق قانون فقط به حرفای خوب گوش می‌دم.",
+    "این جمله رو ذخیره کردم؛ شاید یه روز خودت بهش نیاز داشته باشی.",
+    "من که جایی نمی‌رم، تازه داشت بحث جالب می‌شد.",
+    "اگه هر بار کسی این حرفو می‌زد یه سکه می‌گرفتم، الان میلیونر بودم.",
+    "لطفاً دوباره با لحن مهربون‌تر امتحان کن، این یکی رد شد."
+  ],
+  greeting: [
+    "سلام! امروز درست همون روزیه که یه جواب باحال بشنوی.",
+    "درود بر کسی که سراغ یه ربات باحوش‌تر از خیلیا اومده!",
+    "به رینگ خوش اومدی، اینجا هر حرفی یه جواب حاضر داره.",
+    "سلام سلام، حالا بگو چی می‌خوای بشنوی؟"
+  ],
+  love: [
+    "ممنون، ولی من فقط یه الگوریتم با ذوق شوخ‌طبعی‌ام!",
+    "این حس رو ذخیره کردم؛ رمز عبورش هم خودتی.",
+    "چقدر مهربونی... حالا راستشو بگو، چیکار داری؟",
+    "احساسات متقابل تضمین نمی‌شه، ولی جواب باحال قطعیه."
+  ],
+  status: [
+    "من که همیشه در حالت آماده‌باش برای یه جواب خفنم!",
+    "بهتر از دیروز، بدتر از فردا؛ یعنی ثابت خوبم.",
+    "عالی، تازه یه فکر بامزه به ذهنم رسید که همین الان گفتم.",
+    "خوبم، منتظر بودم یکی بپرسه که این جوابو بدم."
+  ]
+};
+
+const keywordMap = [
+  { cat: 'insult', words: ['گمشو','خفه','برو','بمیر','احمق','بی‌شعور','بیشعور','دیوونه','دیونه','عوضی','مسخره'] },
+  { cat: 'greeting', words: ['سلام','درود','صبح بخیر','شب بخیر'] },
+  { cat: 'love', words: ['دوستت دارم','عاشق','قشنگی','خوشگل','دوست دارم'] },
+  { cat: 'status', words: ['چطوری','حالت چطوره','خوبی','چه خبر'] }
+];
+
+const genericTemplates = [
+  x => `«${x}»؟ جالبه، ولی جواب من از خودش جالب‌تره.`,
+  x => `پردازش «${x}» تموم شد. نتیجه: چیزی که انتظارشو نداشتی!`,
+  x => `اگه «${x}» یه فیلم بود، این جواب صحنه‌ی پایانیش بود.`,
+  x => `بابت «${x}» ممنون، حالا نوبت منه که غافلگیرت کنم.`,
+  x => `با شنیدن «${x}» تصمیم گرفتم امروز رو باحال‌تر کنم.`,
+  x => `جواب رسمی به «${x}»: عالی بود، ادامه بده.`,
+  x => `اگه جایزه‌ی بهترین جمله‌ی امروز بود، «${x}» یکی از نامزدها بود.`,
+  x => `«${x}» رو شنیدم و مغزم گفت وقت شوخیه.`
+];
+
+function shuffle(arr){
+  const a = [...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+function detectCategory(text){
+  const lower = text.trim();
+  for(const entry of keywordMap){
+    if(entry.words.some(w => lower.includes(w))) return entry.cat;
+  }
+  return null;
+}
+
+function getResponses(text){
+  const cat = detectCategory(text);
+  const results = [];
+  if(cat){
+    const pool = shuffle(bank[cat]).slice(0,2);
+    results.push(...pool);
+    results.push(shuffle(genericTemplates)[0](text.trim() || "این"));
+  } else {
+    const templates = shuffle(genericTemplates).slice(0,3);
+    results.push(...templates.map(fn => fn(text.trim() || "این")));
+  }
+  return results;
+}
+
+const resultsEl = document.getElementById('results');
+const inputEl = document.getElementById('input');
+const gloveEl = document.getElementById('glove');
+const btn = document.getElementById('hitBtn');
+
+function render(text){
+  resultsEl.innerHTML = '';
+  const responses = getResponses(text);
+  responses.forEach((r, i) => {
+    const card = document.createElement('div');
+    card.className = 'round';
+    card.style.animationDelay = (i*0.12)+'s';
+    card.innerHTML = `<span class="tag">راند ${i+1}</span><p>${r}</p>`;
+    resultsEl.appendChild(card);
+  });
+}
+
+function go(){
+  const text = inputEl.value;
+  if(!text.trim()) return;
+  gloveEl.classList.remove('punch');
+  void gloveEl.offsetWidth;
+  gloveEl.classList.add('punch');
+  render(text);
+}
+
+btn.addEventListener('click', go);
+inputEl.addEventListener('keydown', e => {
+  if(e.key === 'Enter' && !e.shiftKey){
+    e.preventDefault();
+    go();
+  }
+});
+</script>
+</body>
+</html>
